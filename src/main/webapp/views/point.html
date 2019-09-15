@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+       window.onload=function()
+
+
+    </script>
+</head>
+<body>
+<div id="div01" >您的用户积分为：</div>
+<div id="div02" >存放请求来的数据</div>
+<div id="div03" >
+	<table>
+		<tr>
+			<td>user_id</td>
+			<td>lev</td>
+			<td>points</td>
+		</tr>
+	</table>
+</div>
+<script>
+
+    $(function()
+    {
+        $.ajax({
+            type: "GET",
+            url: '/user/query/point?userId=1',
+            dataType:"json",
+            success: function(data) {
+            	var html = "";
+                // 将请求的数据放输出到div里面
+                $('#div02').html(data.points+"分");
+                html = "<tr><td>"+data.userId+"</td><td>"+data.lev+"</td><td>"+data.points+"</td></tr>";
+                $('table').append(html);
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
